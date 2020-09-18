@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}"
+      xmlns:th="https://www.thymeleaf.org">
 
-<h1 th:text="${greeting}"></h1>
-
-</body>
+<div layout:fragment="content" class="container">
+    <div class="jumbotron">
+        <h1 class="my-font display-4" th:text="${greeting}"></h1>
+    </div>
+</div>
 </html>
