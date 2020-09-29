@@ -47,7 +47,8 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", name=" + name +
-                ", Pin=" + pin;
+                ", name='" + name + '\'' +
+                ", pin='" + pin + '\'' +
+                '}';
     }
 }
