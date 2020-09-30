@@ -37,15 +37,20 @@
             <th>Type</th>
             <th>Balance</th>
             <th>Full</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="bankAccount: ${allBankAccounts}">
+        <a th:each="bankAccount: ${allBankAccounts}">
             <td th:text="${bankAccount.id}"></td>
             <td th:text="${bankAccount.customerId}"></td>
             <td th:text="${bankAccount.type}"></td>
             <td th:text="${bankAccount.balance}"></td>
             <td th:text="${bankAccount}"></td>
+            <td>
+                <a class="btn btn-primary"
+                   th:href="@{/bankaccount/edit/{id}(id=${bankAccount.id})}">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>
