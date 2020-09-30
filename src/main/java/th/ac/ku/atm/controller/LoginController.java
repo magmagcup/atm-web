@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import th.ac.ku.atm.model.Customer;
-import th.ac.ku.atm.service.BankAccountService;
 import th.ac.ku.atm.service.CustomerService;
 
 @Controller
@@ -15,12 +14,9 @@ import th.ac.ku.atm.service.CustomerService;
 public class LoginController {
 
     private CustomerService customerService;
-    private BankAccountService bankAccountService;
 
-    public LoginController(CustomerService customerService,
-                           BankAccountService bankAccountService) {
+    public LoginController(CustomerService customerService) {
         this.customerService = customerService;
-        this.bankAccountService = bankAccountService;
     }
 
     @GetMapping
@@ -32,14 +28,11 @@ public class LoginController {
         Customer matchingCustomer = customerService.checkPin(customer);
 
         if (matchingCustomer != null) {
-            model.addAttribute("customertitle",
-                    matchingCustomer.getName() + " Bank Accounts");
-            model.addAttribute("bankaccounts",
-                    bankAccountService.getCustomerBankAccount(customer.getId()));
-            return "customeraccount";
+            model.addAttribute("greeting",
+                    "Welcome, " + matchingCustomer.getName());
         } else {
             model.addAttribute("greeting", "Can't find customer");
-            return "home";
         }
+        return "home";
     }
 }
