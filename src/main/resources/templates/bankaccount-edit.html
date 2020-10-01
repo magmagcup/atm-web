@@ -4,26 +4,43 @@
       xmlns:th="https://www.thymeleaf.org">
 
 <div class="container" layout:fragment="content">
-    <h1>Edit Bank Account</h1>
-    <form th:action="@{/bankaccount/edit/{id}(id=${bankAccount.id})}"  th:object="${bankAccount}"  method="POST">
+    <h1>Edit Balance</h1>
+    <table class="table table-bordered" th:object="${bankAccount}">
+        <thead class="thead-light">
+        <tr>
+            <th>Id</th>
+            <th>Customer Id</th>
+            <th>Type</th>
+            <th>Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${bankAccount.id}"></td>
+            <td th:text="${bankAccount.customerId}"></td>
+            <td th:text="${bankAccount.type}"></td>
+            <td th:text="${bankAccount.balance}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/bankaccount/withdraw/{id}(id=${bankAccount.id})}" method="POST">
+
         <div class="form-group">
-            <label for="inputId">Id</label>
-            <input disabled type="text" th:field="*{id}" class="form-control" id="inputId">
+            <label for="inputBalance">Withdraw</label>
+            <input type="text" class="form-control" name = "balance" id="inputBalance">
         </div>
 
         <div class="form-group">
-            <label for="inputCustomer">Customer Id</label>
-            <input disabled type="text" th:field="*{customerId}" class="form-control" id="inputCustomer">
+            <input type="submit" class="btn btn-primary">
         </div>
+    </form>
+
+    <form th:action="@{/bankaccount/deposit/{id}(id=${bankAccount.id})}" method="POST">
 
         <div class="form-group">
-            <label for="inputType">Type</label>
-            <input disabled type="text" th:field="*{type}" class="form-control" id="inputType">
-        </div>
-
-        <div class="form-group">
-            <label for="inputBalance">Balance</label>
-            <input type="text" th:field="*{balance}" class="form-control" id="inputBalance">
+            <label for="inputBalance">Deposit</label>
+            <input type="text" class="form-control" name = "balance" id="inputBalance">
         </div>
 
         <div class="form-group">
